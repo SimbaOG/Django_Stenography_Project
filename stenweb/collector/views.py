@@ -12,6 +12,10 @@ import socket
 
 
 def main_page(request):
+    return render(request, 'new_index_page.html')
+
+
+def show_encode_page(request):
     return render(request, 'index_page.html')
 
 
@@ -75,7 +79,52 @@ def start_encode(request):
         return send_image
 
 
+def show_decode_page(request):
+    return render(request, 'decode_page.html')
+
+
+def start_decode(request):
+
+    if request.method == 'POST':
+        image = request.FILES.get('image', None)
+
+        if image is None:
+            messages.info(request, 'No image uploaded!')
+            return render(request, 'decode_page.html')
+
+        enc_message = decode(image)
+
+        messages.info(request, f'Encoded message in image: {enc_message}')
+        return render(request, 'decode_page.html')
+
+
 # Static Function for encoding images:
+
+def decode(img):
+
+    image = Image.open(img, 'r')
+
+    data = ''
+    imgdata = iter(image.getdata())
+
+    while True:
+        pixels = [value for value in imgdata.__next__()[:3] +
+                  imgdata.__next__()[:3] +
+                  imgdata.__next__()[:3]]
+
+        binstr = ''
+
+        for i in pixels[:8]:
+            if i % 2 == 0:
+                binstr += '0'
+            else:
+                binstr += '1'
+
+        data += chr(int(binstr, 2))
+        if pixels[-1] % 2 != 0:
+            return data
+
+
 def generate_data(data):
 
     new_data = []
