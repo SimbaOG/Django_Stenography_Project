@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Destination</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'indexpage/update_dest.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'indexpage/rounded.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'indexpage/link_style.css' %}">
+</head>
+<body>
+
+<center><h1>Decode Data</h1>
+    <p style="color:red">{% for message in messages %}
+        {{message}}
+        {% endfor %}</p></center>
+<br><br>
+<center><form action="dec_img" method="post" enctype="multipart/form-data" name="encryptor">
+    {% csrf_token %}
+
+    <label for="img">Image to decode: </label><br>
+    <br>
+    <input type="file" name="image" id="img" accept="image/*"/><br>
+    <input type="submit">
+</form></center>
+<br>
+<center><a href="/">Back to Home</a></center>
+</body>
+<script src="{% static 'indexpage/validator.js' %}"></script>
+<script src="{% static 'indexpage/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'indexpage/update_dest.js' %}"></script>
+</html>
