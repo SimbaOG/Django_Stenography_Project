@@ -26,7 +26,7 @@ SECRET_KEY = 'p7-x)0-j!b$^lsduzw(2hzvr1!&+*=21a1(i)(4qg^q&a8a!z2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'd618616bac35.ngrok.io', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', '0c3ebc3b23ec.ngrok.io', 'localhost']
 
 
 # Application definition
@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'stenodata',
         'USER': 'postgres',
-        'PASSWORD': 'Amri1234@',
+        'PASSWORD': '1234',
         'HOST': 'localhost'
     }
 }
